@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta property="og:title" content="@yield('title')" />
     <meta property="og:description" content="@yield('site_description')" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:site_name" content="dothi9.com" />
+    <meta property="og:site_name" content="nhontrachdatnen.com" />
     <?php $socialImage = isset($socialImage) ? $socialImage : $settingArr['banner']; ?>
     <meta property="og:image" content="{{ Helper::showImage($socialImage) }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
