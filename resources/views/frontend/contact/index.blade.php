@@ -1,98 +1,79 @@
-@extends('frontend.layout')
-
-@include('frontend.partials.meta')
+@extends('frontend.layout') 
+@include('frontend.partials.meta') 
 @section('content')
-<article class="block block-breadcrumb">
-  <ul class="breadcrumb">
-    <li><a href="{{ route('home') }}" title="Trở về trang chủ">Trang chủ</a></li>
-    <li class="active">Liên hệ</li>
-  </ul>
-</article><!-- /block-breadcrumb -->
-<section class="block-content">
-        <div class="block-common">  
-        <div id="contact" class="page-content page-contact">
-            <div id="message-box-conact"></div>
+
+<article class="block-breadcrumb-page">
+    <ul class="breadcrumb"> 
+        <li><a href="{{ route('home') }}" title="Trở về trang chủ">Trang chủ</a></li>           
+        <li class="active">Liên hệ</li>
+    </ul>
+</article>
+<div class="container contact">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="widget-item info-contact in-fo-page-content">
+        <h1 class="title-head">Thông tin liên hệ</h1>
+        <!-- End .widget-title -->
+        
+        <h4>CÔNG TY TNHH TM KT GIA GIA PHÚ</h4>
+        
+        <ul class="widget-menu contact-info-page">
+          
+          <li><i class="fa fa-map-marker" aria-hidden="true"></i> 22 đường số 8 Cư xá Bình Thới, Phường 8 Quận 11, Tp Hồ Chí Minh</li>
+         
+          <li><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:02839626288">028 39 62 62 88 - 028 39 62 62 99</a></li>
+          <li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:anhthu@giagiaphu.com.vn">anhthu@giagiaphu.com.vn</a></li>
+          
+        </ul>
+        <!-- End .widget-menu -->
+      </div>
+      <div class="box-maps margin-top-10 margin-bottom-10">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.656869219266!2d106.64812471513916!3d10.760906062421732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752e92f3d4b18d%3A0x372438f63e76a724!2zMjIgxJDGsOG7nW5nIFPhu5EgOCwgUGjGsOG7nW5nIDgsIFF14bqtbiAxMSwgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1539679491625" width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="page-login">
+        <div id="login">
+          <h3 class="title-head">Gửi thông tin</h3>         
+          <form accept-charset="UTF-8" action="/contact" id="contact" method="post" class="has-validation-callback">
+<input name="FormType" type="hidden" value="contact">
+<input name="utf8" type="hidden" value="true">
+          
+          <div class="form-signup clearfix">
             <div class="row">
-                
-                <div class="col-sm-8">	
-                    <h3 class="page-heading">
-                        <span class="page-heading-title2">THÔNG TIN Liên hệ</span>
-                    </h3>               
-                    <div class="content">
-                        <h4>NhaDat - Chợ Công Nghệ Giá Sỉ</h4>                        
-                        <p>Hotline: <span class="tel">1900 63 69 75</span></p>                        
-                        <p>Email: <a href="mailto:muahang@icho.vn">muahang@icho.vn</a></p>
-                    </div>
-                    @if(Session::has('message'))
-	                <p class="alert alert-info" >{{ Session::get('message') }}</p>
-	                @endif
-                    <form method="POST" action="{{ route('send-contact') }}">
-                     @if (count($errors) > 0)
-	                  <div class="alert alert-danger">
-	                    <ul>	                       
-	                        <li>Vui lòng nhập đầy đủ thông tin.</li>	                        
-	                    </ul>
-	                  </div>
-	                @endif	
-                    <div class="contact-form-box">
-                        <div class="form-selector">                            
-                            <textarea style="font-size:14px" class="form-control input-sm" rows="8" id="content" name="content" placeholder="Nhập nội dung bạn muốn liên hệ hoặc góp ý với NhaDat">{{ old('content') }}</textarea>
-
-                        </div>
-                        <input type="hidden" name="type" value="1">                        
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <div class="form-selector col-md-4" style="padding-left:0px;padding-top:7px;height:45px">
-                            <input type="radio" name="gender" value="1" id="gender1" checked="checked"> <label for="gender1">Anh</label>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" name="gender" value="2" id="gender2"> <label for="gender2">Chị</label>
-                        </div>
-                        <div class="form-selector col-md-8" style="padding-right:0px;height:45px">                            
-                            <input type="text" placeholder="Họ và tên" class="form-control input-sm" id="full_name" name="full_name"  value="{{ old('full_name') }}" style="height:35px" />
-                        </div>
-                        <div class="form-selector col-md-4" style="padding-left:0px;height:45px">                            
-                            <input type="text" placeholder="Số điện thoại" class="form-control input-sm" id="phone" name="phone" value="{{ old('phone') }}" style="height:35px"/>
-                        </div>   
-                        <div class="form-selector col-md-8" style="padding-right:0px;height:45px">                           
-                            <input type="email" placeholder="Email của bạn" class="form-control input-sm" id="email" name="email" value="{{ old('email') }}" style="height:35px"/>
-                        </div>
-                        <div class="form-selector">
-                            <button type="submit" id="btn-send-contact" class="btn">GỬI LIÊN HỆ</button>
-                        </div>
-                    </div>
-                    </form>
-                </div>
-                <div class="col-xs-12 col-sm-4" id="contact_form_map">                    
-                    <div class="row">
-                        <div class="col-sm-12" style="margin-bottom:20px">
-                            <div class="introduce-title">Thông tin Công ty</div>
-                            <ul id="introduce-company"  class="introduce-list">
-                                <li><a href="{{ route('danh-muc', 'gioi-thieu') }}">Giới thiệu</a></li>
-                                <li><a href="{{ route('chuong-trinh-khuyen-mai') }}">Khuyến mãi</a></li>
-                                <li><a href="{{ route('contact') }}">Liên hệ</a></li>
-                            </ul>
-                        </div>                       
-                        <div class="col-sm-12">
-                            <div class="introduce-title">CHÍNH SÁCH</div>
-                            <ul id = "introduce-support"  class="introduce-list">
-                                <li><a href="{{ route('danh-muc', 'bao-mat-thong-tin') }}">Bảo mật thông tin</a></li>
-                                <li><a href="{{ route('danh-muc', 'thanh-toan') }}">Phương thức thanh toán</a></li>
-                                <li><a href="{{ route('danh-muc', 'hinh-thuc-van-chuyen') }}">Hình thức vận chuyển</a></li>
-                                <li><a href="{{ route('danh-muc', 'chinh-sach-bao-hanh') }}">Chính sách bảo hành</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+              <div class="col-sm-6 col-xs-12">
+                <fieldset class="form-group">
+                  <label>Họ tên<span class="required">*</span></label>
+                  <input type="text" name="contact[name]" id="name" class="form-control  form-control-lg" data-validation-error-msg="Không được để trống" data-validation="required" required="">
+                </fieldset>
+              </div>
+              <div class="col-sm-6 col-xs-12">
+                <fieldset class="form-group">
+                  <label>Email<span class="required">*</span></label>
+                  <input type="email" name="contact[email]" data-validation="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" data-validation-error-msg="Email sai định dạng" id="email" class="form-control form-control-lg" required="">
+                </fieldset>
+              </div>
+              <div class="col-sm-12 col-xs-12">
+                <fieldset class="form-group">
+                  <label>Điện thoại<span class="required">*</span></label>
+                  <input type="tel" name="contact[phone]" data-validation="tel" data-validation-error-msg="Không được để trống" id="tel" class="number-sidebar form-control form-control-lg" required="">
+                </fieldset>
+              </div>
+              <div class="col-sm-12 col-xs-12">
+                <fieldset class="form-group">
+                  <label>Nội dung<span class="required">*</span></label>
+                  <textarea name="contact[body]" id="comment" class="form-control form-control-lg" rows="5" data-validation-error-msg="Không được để trống" data-validation="required" required=""></textarea>
+                </fieldset>
+                <div class="pull-xs-left" style="margin-top:20px;">
+                  <button type="submit" class="btn btn-blues btn-style btn-style-active">Gửi tin nhắn</button>
+                </div> 
+              </div>
             </div>
+          </div>
+          </form>
         </div>
-
-</section>
-<style type="text/css">
-    span.required{
-        color:red;
-    }
-    .contact-form-box input {
-        font-size: 14px;
-        border: 1px solid #ccc
-    }
-</style>
-@endsection
+      </div>
+    </div>
+  </div>
+</div>
+@stop
