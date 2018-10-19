@@ -72,10 +72,4 @@
     </div>
   </div>
 </div>
-<style type="text/css">
-    address h4{
-        font-size: 14px;
-        margin-bottom: 10px;
-    }
-</style>
 @stop
