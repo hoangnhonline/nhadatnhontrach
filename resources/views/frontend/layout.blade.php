@@ -17,7 +17,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 	<title>@yield('title')</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    @if(in_array(\Request::route()->getName(), ['news-detail', 'chi-tiet']) && isset($noindex) && $noindex == 1)
+    @if(in_array($routeName, ['news-detail', 'chi-tiet']) && isset($noindex) && $noindex == 1)
     <meta name="robots" content="noindex"/>
     @else    
     <meta name="robots" content="index,follow"/>
@@ -76,7 +76,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 </head>
 
-<body {{ \Request::route()->getName() == "home" ? 'class=page_home' : "" }}>
+<body {{ $routeName == "home" ? 'class=page_home' : "" }}>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBP2W4X"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -177,8 +177,9 @@ var google_remarketing_only = true;
 			@include('frontend.partials.home-menu')
         </div>
 	</nav><!-- /navigation -->
-
+	@if(!in_array($routeName, ['ky-gui', 'ky-gui-thanh-cong', 'about', 'contact']))
 	@yield('slider')
+	@endif
 	
 	@yield('search')
 
@@ -187,9 +188,9 @@ var google_remarketing_only = true;
 			<section class="row">
 				
 				@yield('content')
-				@if(\Request::route()->getName() != "ky-gui" && \Request::route()->getName() != "ky-gui-thanh-cong" && (!isset($detailPage)))
+				@if(!in_array($routeName, ['ky-gui', 'ky-gui-thanh-cong', 'about', 'contact'])  && (!isset($detailPage)))
 				<section class="col-sm-4 col-xs-12 block-sitebar">
-					@if(\Request::route()->getName() != "home" )
+					@if($routeName != "home" )
 					<article class="block block-box-search">
 						<div class="block-title">
 						<?php $type = isset($type) ? $type : 1 ; ?>
@@ -369,7 +370,7 @@ var google_remarketing_only = true;
 	
 
 	@include('frontend.home.footer')
-	@if(\Request::route()->getName() != "du-an" && !isset($detailPage))
+	@if($routeName != "du-an" && !isset($detailPage))
 	@include('frontend.partials.ads')	
 	@endif
 	 <div class="ppocta-ft-fix">

@@ -11,6 +11,7 @@ use App\Models\Product;
 
 
 use App\Models\Banner;
+use App\Models\Pages;
 
 use App\Models\Location;
 use App\Models\City;
@@ -45,6 +46,11 @@ class HomeController extends Controller
         $id = $request->id;
         $column = $request->col;
         return Helper::getChild($module, $column, $id);
+    }
+    public function about(){
+        $detail = Pages::find(1);
+        $seo['title'] = $seo['description'] = $seo['keywords'] = 'Về chúng tôi';
+        return view('frontend.about', compact('detail', 'seo'));
     }
     /**
     * Display a listing of the resource.

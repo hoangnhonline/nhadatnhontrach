@@ -1,8 +1,6 @@
 @extends('frontend.layout')
 
 @section('header')
-  
-  
 @endsection
 @include('frontend.partials.meta')
 @section('content')
