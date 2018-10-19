@@ -236,7 +236,7 @@ class ProductController extends Controller
         $priceUnitList = PriceUnit::all();
         $districtList = District::where('city_id', 1)->where('status', 1)->get();
        // var_dump($detail->district_id);die;
-        $district_id = $request->district_id ? $request->district_id : 2;
+        $district_id = $request->district_id ? $request->district_id : 260;
         $wardList = Ward::where('district_id', $district_id)->get();
         $streetList = Street::where('district_id', $district_id)->get();
         $projectList = Project::where('district_id', $district_id)->get();
