@@ -2997,8 +2997,7 @@ h3.page-title-child {
     width:100%;
     position:absolute;
 }
-.nav>li.level0{
-    width: 125px;
+.nav>li.level0{    
     text-transform: uppercase;
 }
 .menu .navbar-nav>li>a{

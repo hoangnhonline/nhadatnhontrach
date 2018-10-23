@@ -1,10 +1,12 @@
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse menu" id="bs-example-navbar-collapse-1">
-    <div class="text-center logo-menu">
-        <a title="Logo" href="home.html"><img src="https://imgholder.ru/204x90/0082D5/fff.jpg') }}&text=My+Logo&font=tahoma&fz=27" alt=""></a>
+    <div class="row">
+    <div class="col-md-3" style="padding-top:2px;">
+        <a title="Logo" href="{{ route('home') }}"><img style="height: 40px;" src="{{ Helper::showImage($settingArr['logo']) }}" alt=""></a>
     </div>
-    <ul class="nav navbar-nav navbar-left">
-        <li class="level0 {{ $routeName == "home" ? "active" : "" }}"><a class="" href="{{ route('home') }}">Trang chủ</a></li><!-- END MENU HOME -->
+    <ul class="nav navbar-nav navbar-left col-md-9">
+
+      
         <li class="level0 {{ $routeName == "about" ? "active" : "" }}"><a class="" href="{{ route('about') }}">Về chúng tôi</a></li><!-- END MENU HOME -->
         <li class="level0 {{ in_array($routeName, ['du-an', 'detail-project', 'tab']) ? "active" : "" }}"><a href="{{ route('du-an') }}">Dự án</a></li>
         <li class="level0 parent {{ (in_array($routeName, ['ban', 'danh-muc', 'chi-tiet']) && isset($type) && $type == 1) ? "active" : "" }}">
@@ -48,4 +50,5 @@
         @endforeach
         <li class="level0 {{ $routeName == "contact" ? "active" : "" }}"><a class="" href="{{ route('contact') }}">Liên hệ</a></li><!-- END MENU HOME -->
     </ul>
+    </div>
 </div><!-- /.navbar-collapse -->
