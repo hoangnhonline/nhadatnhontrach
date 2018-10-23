@@ -5,7 +5,7 @@
         <a title="Logo" href="{{ route('home') }}"><img style="height: 40px;" src="{{ Helper::showImage($settingArr['logo']) }}" alt=""></a>
     </div>
     <ul class="nav navbar-nav navbar-left col-md-9">
-
+        <li class="level0 {{ $routeName == "home" ? "active" : "" }}"><a class="" href="{{ route('home') }}">Trang chủ</a></li><!-- END MENU HOME -->    
       
         <li class="level0 {{ $routeName == "about" ? "active" : "" }}"><a class="" href="{{ route('about') }}">Về chúng tôi</a></li><!-- END MENU HOME -->
         <li class="level0 {{ in_array($routeName, ['du-an', 'detail-project', 'tab']) ? "active" : "" }}"><a href="{{ route('du-an') }}">Dự án</a></li>
