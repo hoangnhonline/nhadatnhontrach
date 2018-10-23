@@ -608,6 +608,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	          }
 	        });
 	      }   
+	      $(document).ready(function(){	      	
+	      	window.addEventListener("scroll", function (event) {
+			    var scroll = this.scrollY;		    
+			    var top = parseInt($('#mainNav-sticky-wrapper').height()) + parseInt($('#slider-home').height());
+			    if(scroll > top){
+			    	$('#advLeft, #advRight').css('top', '50px');	
+			    }else{
+			    	$('#advLeft, #advRight').css('top', top + 'px');
+			    }		    
+			});
+	      });
 	</script>
 
 </body>
