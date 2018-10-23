@@ -12,7 +12,7 @@
     	<div class="block-footer row">
     		<div class="block-logo-footer col-sm-4">
                 <a href="{{ route('home') }}" title="Đô thị">
-                	<img src="{{ Helper::showImage($settingArr['logo']) }}" alt="logo footer">
+                	<img src="{{ URL::asset('assets/images/dosa-land-logo.png') }}" alt="logo footer">
                 </a>
 
             </div>
