@@ -99,8 +99,8 @@
         var position = ((width_screen - abc)/2) - 117;
 
         var Top = $(".main").offset().top;
-        var Top_end  = $(".main").offset().top + $(".main").height();
-
+        var Top_end  = $(".main").offset().top + $(".main").height();        
+        var topFirst = parseInt($('#mainNav-sticky-wrapper').height()) + parseInt($('#slider-home').height());
         if($("#slider-home").length == 1){
             Advscroll_left.css({
                 "top": Top1,

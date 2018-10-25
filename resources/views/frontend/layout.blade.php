@@ -608,7 +608,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	          }
 	        });
 	      }   
-	      $(document).ready(function(){	      	
+	      $(document).ready(function(){	  
+	      	 var topFirst = parseInt($('#mainNav-sticky-wrapper').height()) + parseInt($('#slider-home').height());
+	      	$('#advLeft, #advRight').css('top', topFirst + 'px');    	
 	      	window.addEventListener("scroll", function (event) {
 			    var scroll = this.scrollY;		    
 			    var top = parseInt($('#mainNav-sticky-wrapper').height()) + parseInt($('#slider-home').height())-scroll;
