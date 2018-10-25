@@ -26,7 +26,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="description" content="@yield('site_description')"/>
     <meta name="keywords" content="@yield('site_keywords')"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
-    <link rel="shortcut icon" href="@yield('favicon')" type="image/x-icon"/>
     <link rel="canonical" href="{{ url()->current() }}"/>        
     <meta property="og:locale" content="vi_VN" />
     <meta property="og:type" content="website" />
@@ -40,7 +39,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:description" content="@yield('site_description')" />
     <meta name="twitter:title" content="@yield('title')" />        
-    <meta name="twitter:image" content="{{ Helper::showImage($socialImage) }}" />	
+    <meta name="twitter:image" content="{{ Helper::showImage($socialImage) }}" />
+	<link rel="icon" href="{{ URL::asset('assets/images/favicon.ico') }}" type="image/x-icon">
 	<!-- ===== Style CSS Common ===== -->
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/css/style.css') }}">
 	<!-- ===== Responsive CSS ===== -->
