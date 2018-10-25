@@ -96,7 +96,7 @@ class ProductController extends Controller
 
         $cityList = City::all();  
         $estateTypeArr = EstateType::where('type', $type)->get(); 
-        $districtList = District::where('city_id', 1)->where('status', 1)->get();
+        $districtList = District::where('city_id', 23)->where('status', 1)->get();
        // var_dump($detail->district_id);die;
         $wardList = Ward::where('district_id', $district_id)->get();
         $streetList = Street::where('district_id', $district_id)->get();
@@ -157,7 +157,7 @@ class ProductController extends Controller
 
         $cityList = City::all();  
         $estateTypeArr = EstateType::where('type', $type)->get(); 
-        $districtList = District::where('city_id', 1)->where('status', 1)->get();
+        $districtList = District::where('city_id', 23)->where('status', 1)->get();
        // var_dump($detail->district_id);die;
         $wardList = Ward::where('district_id', $district_id)->get();
         $streetList = Street::where('district_id', $district_id)->get();
@@ -234,7 +234,7 @@ class ProductController extends Controller
             
         }       
         $priceUnitList = PriceUnit::all();
-        $districtList = District::where('city_id', 1)->where('status', 1)->get();
+        $districtList = District::where('city_id', 23)->where('status', 1)->get();
        // var_dump($detail->district_id);die;
         $district_id = $request->district_id ? $request->district_id : 260;
         $wardList = Ward::where('district_id', $district_id)->get();
@@ -294,7 +294,7 @@ class ProductController extends Controller
         $dataArr['noindex'] = isset($dataArr['noindex']) ? 1 : 0;  
         $dataArr['created_user'] = Auth::user()->id;
         $dataArr['updated_user'] = Auth::user()->id;      
-        $dataArr['city_id'] = 1;       
+        $dataArr['city_id'] = 23;       
         
         if($dataArr['price_id'] == ''){
             $dataArr['price_id'] = Helper::getPriceId($dataArr['price'], $dataArr['price_unit_id'], $dataArr['type']);
@@ -484,7 +484,7 @@ class ProductController extends Controller
             $meta = MetaData::find( $detail->meta_id );
         }               
         $priceUnitList = PriceUnit::all();
-        $districtList = District::where('city_id', 1)->where('status', 1)->get();
+        $districtList = District::where('city_id', 23)->where('status', 1)->get();
        // var_dump($detail->district_id);die;
         $wardList = Ward::where('district_id', $detail->district_id)->get();
         $streetList = Street::where('district_id', $detail->district_id)->get();
@@ -547,7 +547,7 @@ class ProductController extends Controller
         $dataArr['slug'] = str_replace("(", "-", $dataArr['slug']);
         $dataArr['slug'] = str_replace(")", "", $dataArr['slug']);
         $dataArr['alias'] = Helper::stripUnicode($dataArr['title']);
-        $dataArr['city_id'] = 1;
+        $dataArr['city_id'] = 23;
         $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;  
         
         $dataArr['noindex'] = isset($dataArr['noindex']) ? 1 : 0;  
