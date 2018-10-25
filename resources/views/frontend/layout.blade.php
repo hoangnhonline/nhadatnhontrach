@@ -40,8 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:description" content="@yield('site_description')" />
     <meta name="twitter:title" content="@yield('title')" />        
-    <meta name="twitter:image" content="{{ Helper::showImage($socialImage) }}" />
-	<link rel="icon" href="{{ URL::asset('assets/images/favicon.ico') }}" type="image/x-icon">
+    <meta name="twitter:image" content="{{ Helper::showImage($socialImage) }}" />	
 	<!-- ===== Style CSS Common ===== -->
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/css/style.css') }}">
 	<!-- ===== Responsive CSS ===== -->
