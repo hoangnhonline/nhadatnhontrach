@@ -93,6 +93,17 @@
                             >{{ $value->name }}</option>
                             @endforeach
                           </select>
+                        </div>                        
+                        <div class="form-group col-md-12">
+                          <label for="email">Tỉnh/Thành phố <span class="red-star">*</span></label>
+                            <select class="form-control" name="city_id" id="city_id">
+                                @foreach( $cityList as $value )
+                                <option value="{{ $value->id }}"
+                                {{ old('city_id', $detail->city_id) == $value->id ? "selected" : "" }}                           
+
+                                >{{ $value->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group col-md-6  pleft-5">
                           <label for="email">Quận <span class="red-star">*</span></label>
@@ -106,8 +117,7 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6 none-padding">
-                          <label for="email">Phường <span class="red-star">*</span></label>
-                          {{ $detail->ward_id }}
+                          <label for="email">Phường <span class="red-star">*</span></label>                          
                           <select class="form-control" name="ward_id" id="ward_id">
                             <option value="">--Chọn--</option>
                             @foreach( $wardList as $value )
@@ -884,7 +894,22 @@ $(document).on('keypress', '#name_search', function(e){
           });
         }
       });
-     
+     $('#city_id').change(function(){
+        var city_id = $(this).val();
+         $.ajax({
+            url : '{{ route('get-child') }}',
+            data : {
+              mod : 'district',
+              col : 'city_id',
+              id : city_id
+            },
+            type : 'POST',
+            dataType : 'html',
+            success : function(data){
+              $('#district_id').html(data).selectpicker('refresh');
+            }
+          });
+      });
 
       $('#title').change(function(){
          var name = $.trim( $(this).val() );

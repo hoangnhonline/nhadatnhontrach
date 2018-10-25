@@ -225,6 +225,7 @@ class ProductController extends Controller
         $tagArr = Tag::where('type', 1)->get();
         $directionArr = Direction::all();
         $estate_type_id = $request->estate_type_id ? $request->estate_type_id : null;
+        $city_id = $request->city_id ? $request->city_id : 23;
         $type = $request->type ? $request->type : 1;    
         
         if( $type ){
@@ -233,7 +234,7 @@ class ProductController extends Controller
             $priceList = Price::where('type', $type)->get();     
             
         }       
-        $priceUnitList = PriceUnit::all();
+        $priceUnitList = PriceUnit::all();        
         $districtList = District::where('city_id', 23)->where('status', 1)->get();
        // var_dump($detail->district_id);die;
         $district_id = $request->district_id ? $request->district_id : 260;
@@ -244,7 +245,7 @@ class ProductController extends Controller
         $tienIchLists = Tag::where(['type' => 3, 'district_id' => $district_id])->get();
         $areaList = Area::all();
        // dd($estate_type_id);
-        return view('backend.product.create', compact('estateTypeArr',   'estate_type_id', 'type', 'district_id', 'districtList', 'wardList', 'streetList', 'projectList', 'priceUnitList', 'tagArr', 'tienIchLists', 'directionArr', 'priceList', 'areaList'));
+        return view('backend.product.create', compact('estateTypeArr',   'estate_type_id', 'type', 'district_id', 'districtList', 'wardList', 'streetList', 'projectList', 'priceUnitList', 'tagArr', 'tienIchLists', 'directionArr', 'priceList', 'areaList', 'city_id'));
     }
 
     /**

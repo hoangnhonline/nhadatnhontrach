@@ -91,6 +91,17 @@
                             @endforeach
                           </select>
                         </div>
+                        <div class="form-group col-md-12">
+                          <label for="email">Tỉnh/Thành phố <span class="red-star">*</span></label>
+                            <select class="form-control" name="city_id" id="city_id">
+                                @foreach( $cityList as $value )
+                                <option value="{{ $value->id }}"
+                                {{ old('city_id', $city_id) == $value->id ? "selected" : "" }}                           
+
+                                >{{ $value->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="form-group col-md-6  pleft-5">
                           <label for="email">Quận <span class="red-star">*</span></label>
                             <select class="form-control" name="district_id" id="district_id">
@@ -769,7 +780,22 @@ $(document).on('click', '#btnSaveTagAjax', function(){
             });
          }
       });
-      
+      $('#city_id').change(function(){
+        var city_id = $(this).val();
+         $.ajax({
+            url : '{{ route('get-child') }}',
+            data : {
+              mod : 'district',
+              col : 'city_id',
+              id : city_id
+            },
+            type : 'POST',
+            dataType : 'html',
+            success : function(data){
+              $('#district_id').html(data).selectpicker('refresh');
+            }
+          });
+      });
       $('#district_id').change(function(){
          
             $.ajax({
