@@ -1,5 +1,5 @@
 <?php 
-$url = 'http://'.$_SERVER['SERVER_NAME'];
+$url = 'https://'.$_SERVER['SERVER_NAME'];
 return [    
     'paging' => 100, // number rows for paging
     'uploads' => [
