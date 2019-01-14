@@ -150,6 +150,7 @@
                 @endif
                 <th width="100px">Hình ảnh</th>
                 <th style="text-align:left">Thông tin sản phẩm</th>
+                <th>Người đăng</th>
                 <th width="120px">DUYỆT</th>
                 <th width="120px">Trạng thái</th>                              
                 <th width="1%;white-space:nowrap">Thao tác</th>
@@ -200,6 +201,9 @@
                      </b>                    
                     </p>
                     
+                  </td>
+                  <td>
+                    {{ $item->createdUser->full_name }}
                   </td>
                   <td>
                      @if($item->status == 1)

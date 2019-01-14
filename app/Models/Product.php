@@ -105,5 +105,8 @@ class Product extends Model  {
             ->get();
         return $query;
    }
-    
+    public function createdUser()
+    {
+        return $this->belongsTo('App\Models\Account', 'created_user');
+    }
 }

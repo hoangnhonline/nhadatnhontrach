@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
+use App\Models\Settings;
 
 
-use Helper, File, Session, Auth;
+use Helper, File, Session, Auth,Mail;
 
 class ContactController extends Controller
 { 
@@ -32,7 +33,17 @@ class ContactController extends Controller
         ]);       
 
         $rs = Contact::create($dataArr);
-
+         $settingArr = Settings::whereRaw('1')->lists('value', 'name');        
+        Mail::send('frontend.contact.email',
+            [                   
+                'dataArr'             => $rs
+            ],
+            function($message) use ($dataArr, $settingArr) {                    
+                $message->subject('Khách hàng gửi liên hệ');
+                $message->to([$settingArr['email_nhan']]);
+                $message->from('web.0917492306@gmail.com', 'nhontrachdatnen.com');
+                $message->sender('web.0917492306@gmail.com', 'nhontrachdatnen.com');
+        });
         Session::flash('message', 'Gửi liên hệ thành công.');
 
         return redirect()->route('contact');

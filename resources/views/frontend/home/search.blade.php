@@ -20,7 +20,9 @@
 									<select class="selectpicker form-control" data-live-search="true" name="estate_type_id" id="estate_type_id">
 										<option selected="selected" value="">Loại bất động sản</option>
 										@foreach($banList as $ban)
+										@if($ban->status == 1)
 										<option data-slug="{{ $ban->slug }}" value="{{ $ban->id }}">{!! $ban->name !!}</option>
+									@endif
 										@endforeach
 									</select>
 								</div>

@@ -35,6 +35,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta property="og:site_name" content="nhontrachdatnen.com" />
     <?php $socialImage = isset($socialImage) ? $socialImage : $settingArr['banner']; ?>
     <meta property="og:image" content="{{ Helper::showImage($socialImage) }}" />
+    <meta property="og:image:width" content="1010" />
+	<meta property="og:image:height" content="668" />
+
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:description" content="@yield('site_description')" />
@@ -123,7 +126,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 												<select class="selectpicker form-control" data-live-search="true" name="estate_type_id" id="estate_type_id">
 													<option value="">Loại bất động sản</option>
 													@foreach($banList as $ban)
+													@if($ban->status == 1)
 													<option data-slug="{{ $ban->slug }}" @if(isset($estate_type_id) && $estate_type_id == $ban->id) selected @endif class="option-lv1" value="{{ $ban->id }}">{{ $ban->name }}</option>
+												@endif
 													@endforeach
 												</select>
 											</div>	
@@ -286,12 +291,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	@include('frontend.partials.ads')	
 	@endif
 	 <div class="ppocta-ft-fix">
-	<div id="messengerButton"> <a href="https://m.me/201501930545442" target="_blank" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Messenger Button', 'Mobile']);"><i></i></a></div>
-	<div id="zaloButton"> <a href="http://zalo.me/0938865826" target="_blank" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Zalo Button', 'Mobile']);"><i></i></a></div>
-	<div id="callNowButton"> <a href="tel:0938865826" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Call Button', 'Mobile']);"><i></i></a></div>
-	</div>
- 	<!-- /.block-call -->
-
+	<div id="messengerButton"> <a href="https://m.me/nhontrachdatnen/" target="_blank" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Messenger Button', 'Mobile']);"><i></i></a></div>
+	<div id="zaloButton"> <a href="http://zalo.me/3654926898419817547" target="_blank" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Zalo Button', 'Mobile']);"><i></i></a></div>
+	<div id="callNowButton"> <a href="tel:02871000222" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Call Button', 'Mobile']);"><i></i></a></div>
+</div><!-- /.block-call -->
 	<a id="return-to-top" class="td-scroll-up" href="javascript:void(0)">
   		<i class="fa fa-angle-up" aria-hidden="true"></i>
 	</a>

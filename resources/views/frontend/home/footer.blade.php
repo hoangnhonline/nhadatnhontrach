@@ -12,7 +12,7 @@
     	<div class="block-footer row">
     		<div class="block-logo-footer col-sm-4">
                 <a href="{{ route('home') }}" title="Đô thị">
-                	<img src="{{ URL::asset('assets/images/dosa-land-logo.png') }}" alt="logo footer">
+                	<img src="{{ Helper::showImage($settingArr['logo']) }}" alt="logo footer">
                 </a>
 
             </div>
@@ -22,7 +22,8 @@
 				</address>
             </div>
             <div class="block-menu-bottom-bottom col-sm-4">
-				<label>Thông Tin Mua Bán</label>
+                <address>
+				<h4><strong>{{ $settingArr['title_footer'] }}</strong></h4>
                 <ul>
                 	@if($footerLink)
                 	@foreach($footerLink as $link)
@@ -30,6 +31,7 @@
 					@endforeach
 					@endif
                 </ul>
+                </address>
             </div>
     	</div>
     </div>

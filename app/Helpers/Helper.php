@@ -33,15 +33,26 @@ class Helper
             echo '<option value="">Quận/Huyện</option>';
         }
         if(!empty(  (array) $listData  )){
-            
-            foreach($listData as $data){                
-                $s = "<option ";
-                if(isset($data->slug)){
-                    $s.= "data-slug=". $data->slug;
-                }
-                echo $s.=" value=".$data->id.">".$data->name."</option>";
+            if($table == "estate_type"){
+				foreach($listData as $data){    
+					if($data->status == 1){
+					$s = "<option ";
+					if(isset($data->slug)){
+						$s.= "data-slug=". $data->slug;
+					}
+					echo $s.=" value=".$data->id.">".$data->name."</option>";
+					}
+				}
+			}else{
+				foreach($listData as $data){                
+					$s = "<option ";
+					if(isset($data->slug)){
+						$s.= "data-slug=". $data->slug;
+					}
+					echo $s.=" value=".$data->id.">".$data->name."</option>";
 
-            }
+				}
+			}
         }
     }
     public static function getPriceId($price, $price_unit_id, $type){

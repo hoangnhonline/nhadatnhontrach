@@ -52,6 +52,18 @@
                   <input type="text" class="form-control" name="facebook_fanpage" id="facebook_fanpage" value="{{ $settingArr['facebook_fanpage'] }}">
                 </div>
                 <div class="form-group">
+                  <label>Tiêu đề form</label>
+                  <input type="text" class="form-control" name="title_form" id="title_form" value="{{ $settingArr['title_form'] }}">
+                </div>
+                <div class="form-group">
+                  <label>Email nhận</label>
+                  <input type="text" class="form-control" name="email_nhan" id="email_nhan" value="{{ $settingArr['email_nhan'] }}">
+                </div>
+                <div class="form-group">
+                  <label>Tiêu đề footer</label>
+                  <input type="text" class="form-control" name="title_footer" id="title_footer" value="{{ $settingArr['title_footer'] }}">
+                </div>
+                <div class="form-group">
                   <label>Facebook APP ID</label>
                   <input type="text" class="form-control" name="facebook_appid" id="facebook_appid" value="{{ $settingArr['facebook_appid'] }}">
                 </div>
@@ -87,6 +99,17 @@
                     <input type="file" id="file-logo" style="display:none" />
                  
                     <button class="btn btn-default btn-sm" id="btnUploadLogo" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
+                  </div>
+                  <div style="clear:both"></div>
+                </div>
+                <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
+                  <label class="col-md-3 row">Logo footer </label>    
+                  <div class="col-md-9">
+                    <img id="thumbnail_logo_footer" src="{{ $settingArr['logo_footer'] ? Helper::showImage($settingArr['logo_footer']) : URL::asset('backend/dist/img/img.png') }}" class="img-logo" width="150" >
+                    
+                    <input type="file" id="file-logo-footer" style="display:none" />
+                 
+                    <button class="btn btn-default btn-sm" id="btnUploadLogoFooter" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
                   </div>
                   <div style="clear:both"></div>
                 </div>
@@ -160,7 +183,13 @@
     </div>
 <input type="hidden" name="logo" id="logo" value="{{ $settingArr['logo'] }}"/>          
 <input type="hidden" name="logo_name" id="logo_name" value="{{ old('logo_name') }}"/>
-<input type="hidden" name="favicon" id="favicon" value="{{ $settingArr['favicon'] }}"/>          
+<input type="hidden" name="favicon" id="favicon" value="{{ $settingArr['favicon'] }}"/>
+
+<input type="hidden" name="logo_footer" id="logo_footer" value="{{ $settingArr['logo_footer'] }}"/>          
+<input type="hidden" name="logo_footer_name" id="logo_footer_name" value="{{ old('logo_footer_name') }}"/>
+<input type="hidden" name="favicon" id="favicon" value="{{ $settingArr['favicon'] }}"/>
+
+
 <input type="hidden" name="favicon_name" id="favicon_name" value="{{ old('favicon_name') }}"/>
 <input type="hidden" name="banner" id="banner" value="{{ $settingArr['banner'] }}"/>          
 <input type="hidden" name="banner_name" id="banner_name" value="{{ old('banner_name') }}"/>
@@ -187,6 +216,9 @@
       });
       $('#btnUploadLogo').click(function(){        
         $('#file-logo').click();
+      });
+      $('#btnUploadLogoFooter').click(function(){        
+        $('#file-logo-footer').click();
       });
       $('#btnUploadFavicon').click(function(){        
         $('#file-favicon').click();
@@ -230,6 +262,39 @@
                 }
                 //$('#btnLoading').hide();
                 //$('#btnSave').show();
+            }
+          });
+        }
+      });
+      var filesLogoFooter = "";
+      $('#file-logo-footer').change(function(e){
+         filesLogoFooter = e.target.files;
+         console.log(filesLogoFooter);
+         if(filesLogoFooter != ''){
+           var dataForm = new FormData();        
+          $.each(filesLogoFooter, function(key, value) {
+             dataForm.append('file', value);
+          });   
+          
+          dataForm.append('date_dir', 0);
+          dataForm.append('folder', 'tmp');
+
+          $.ajax({
+            url: $('#route_upload_tmp_image').val(),
+            type: "POST",
+            async: false,      
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+              console.log(response);
+              if(response.image_path){
+                $('#thumbnail_logo_footer').attr('src',$('#upload_url').val() + response.image_path);
+                $( '#logo_footer' ).val( response.image_path );
+                $( '#logo_footer_name' ).val( response.image_name );
+              }
+              console.log(response.image_path);
+                //window.location.reload();
             }
           });
         }

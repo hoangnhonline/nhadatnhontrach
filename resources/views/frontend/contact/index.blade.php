@@ -25,7 +25,7 @@
     <div class="col-md-8">
       <div class="page-login">
         <div id="login">
-          <h3 class="title-head">Gửi thông tin</h3>         
+          <h3 class="title-head">{{ $settingArr['title_form'] }}</h3>         
           <div id="showmess" class="clearfix"></div>
                 @if(Session::has('message'))
                 
@@ -39,7 +39,7 @@
                     </ul>
                   </div>                        
                 @endif  
-                <form class="block-form" action="{{ route('send-contact') }}" method="POST">
+                <form class="block-form" id="contactForm" action="{{ route('send-contact') }}" method="POST">
                 {{ csrf_field() }}
                     <div class="row">
                         <div class="form-group col-sm-12 col-xs-12">
@@ -72,4 +72,15 @@
     </div>
   </div>
 </div>
+
+@stop
+@section('javascript_page')
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#btnSave').click(function(){
+            $(this).html('Đang gửi...').attr('disabled', 'disabled');
+            $('#contactForm').submit();
+        });
+    });
+</script>
 @stop
